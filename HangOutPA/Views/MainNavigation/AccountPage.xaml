@@ -47,7 +47,60 @@
                     <Label Text="HOURS OFFLINE" TextColor="White" FontSize="14" CharacterSpacing="2" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="0,-5,0,0" />
                 </VerticalStackLayout>
             </Border>
+
+            <!-- Карточки для перехода в разделы -->
+            <Grid Padding="10, 10, 10, 0" RowSpacing="10" ColumnSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Frame Padding="0" BackgroundColor="White" HasShadow="True" CornerRadius="10" Grid.Row="0" Grid.Column="0">
+                    <StackLayout HorizontalOptions="Center" Padding="10">
+                        <!--<Image Source="" WidthRequest="40" HeightRequest="40" HorizontalOptions="Center"/>-->
+                        <Label Text="Trophy Room"
+                FontSize="20"
+                TextColor="#333333"
+                HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Padding="0" BackgroundColor="White" HasShadow="True" CornerRadius="10" Grid.Row="0" Grid.Column="1">
+                    <StackLayout HorizontalOptions="Center" Padding="10">
+                        <!--<Image Source="" WidthRequest="40" HeightRequest="40" HorizontalOptions="Center"/>-->
+                        <Label Text="Digital Wallet"
+                FontSize="20"
+                TextColor="#333333"
+                HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Padding="0" BackgroundColor="White" HasShadow="True" CornerRadius="10" Grid.Row="1" Grid.Column="0">
+                    <StackLayout HorizontalOptions="Center" Padding="10">
+                        <!--<Image Source="" WidthRequest="40" HeightRequest="40" HorizontalOptions="Center"/>-->
+                        <Label Text="Safety Hub"
+                FontSize="20"
+                TextColor="#333333"
+                HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Padding="0" BackgroundColor="White" HasShadow="True" CornerRadius="10" Grid.Row="1" Grid.Column="1">
+                    <StackLayout HorizontalOptions="Center" Padding="10">
+                        <!--<Image Source="" WidthRequest="40" HeightRequest="40" HorizontalOptions="Center"/>-->
+                        <Label Text="Stats"
+                FontSize="20"
+                TextColor="#333333"
+                HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+            </Grid>
             
         </VerticalStackLayout>
+        
     </ScrollView>
 </ContentPage>

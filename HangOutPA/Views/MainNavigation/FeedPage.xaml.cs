@@ -1,8 +1,8 @@
 namespace HangOutPA.Views.MainNavigation;
 
-public partial class MainMenuPage : ContentPage
+public partial class FeedPage : ContentPage
 {
-	public MainMenuPage()
+	public FeedPage()
 	{
 		InitializeComponent();
 	}

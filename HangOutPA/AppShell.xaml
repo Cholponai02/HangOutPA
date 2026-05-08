@@ -12,15 +12,15 @@
         <ShellContent
             Title="Feed"
             Icon="folder_icon.png"
-            ContentTemplate="{DataTemplate views:MainMenuPage}"
-            Route="MainMenuPage"
+            ContentTemplate="{DataTemplate views:FeedPage}"
+            Route="FeedPage"
             Shell.NavBarIsVisible="True"
             />
         <ShellContent
     Title="Groups"
     Icon="group_icon.png"
     ContentTemplate="{DataTemplate views:GroupsPage}"
-    Route="MainMenuPage"
+    Route="FeedPage"
     Shell.NavBarIsVisible="True"
     />
 

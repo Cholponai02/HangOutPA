@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:HangOutPA.ViewModels"
+             x:Class="HangOutPA.Views.MainNavigation.FeedPage"
+             Title="FeedPage"
+             BackgroundColor="#F0F2F5"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <vm:FeedViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto, Auto, *">
+
+        <Grid Grid.Row="0" 
+      ColumnDefinitions="Auto, *, Auto" 
+      Margin="20,10,20,0" 
+      ColumnSpacing="15">
+
+            <ImageButton Grid.Column="0"
+                 Source="circle_ixon.png"
+                 WidthRequest="28"
+                 HeightRequest="28"
+                 BackgroundColor="Transparent"
+                 VerticalOptions="Center"/>
+
+            <Border Grid.Column="1" 
+            StrokeThickness="0" 
+            BackgroundColor="#D1D9E6" 
+            HeightRequest="50">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+
+                <Grid ColumnDefinitions="Auto, *">
+                    <Image Source="search_small_icon.png" 
+                   WidthRequest="18" 
+                   Margin="15,0,0,0" 
+                   VerticalOptions="Center"
+                   Grid.Column="0"/>
+                    <Entry Grid.Column="1"
+                   Placeholder="Search events..." PlaceholderColor="DarkSlateGrey"
+                   Margin="10,0" 
+                   VerticalOptions="Center"
+                   FontSize="15"
+                   TextColor="#1E293B"/>
+                </Grid>
+            </Border>
+
+            <ImageButton Grid.Column="2"
+                 Source="bell_icon.png"
+                 WidthRequest="28"
+                 HeightRequest="28"
+                 BackgroundColor="Transparent"
+                 VerticalOptions="Center"/>
+        </Grid>
+
+        <ScrollView Grid.Row="1" Orientation="Horizontal" HorizontalScrollBarVisibility="Never" Padding="20,10">
+            <HorizontalStackLayout Spacing="10">
+                <Button Text="All" Command="{Binding FilterCommand}" CommandParameter="All" Style="{StaticResource CategoryBtnStyle}"/>
+                <Button Text="Sport" Command="{Binding FilterCommand}" CommandParameter="Sport" Style="{StaticResource CategoryBtnStyle}"/>
+                <Button Text="Study" Command="{Binding FilterCommand}" CommandParameter="Study" Style="{StaticResource CategoryBtnStyle}"/>
+                <Button Text="Food" Command="{Binding FilterCommand}" CommandParameter="Food" Style="{StaticResource CategoryBtnStyle}"/>
+            </HorizontalStackLayout>
+        </ScrollView>
+
+        <CollectionView Grid.Row="2" ItemsSource="{Binding FilteredEvents}" SelectionMode="None" >
+
+            <CollectionView.EmptyView>
+                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                    <Label Text="No events found 😢" FontSize="20" HorizontalOptions="Center"/>
+                    <Label Text="Be the first to create one in this category!" HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border StrokeThickness="0" HeightRequest="500" Margin="0,0,0,20">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="25"/>
+                        </Border.StrokeShape>
+
+                        <Grid ColumnDefinitions="*, 70">
+
+                            <Image Grid.ColumnSpan="2" Source="{Binding ImageSource}" Aspect="AspectFill"/>
+
+                            <Border Grid.ColumnSpan="2" VerticalOptions="End" BackgroundColor="#CC000000" StrokeThickness="0" Padding="20">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Description}" TextColor="White" FontSize="18" FontAttributes="Bold"/>
+                                    <Label Text="{Binding TimeLocation}" TextColor="#DDD" FontSize="14"/>
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+                                <ImageButton Source="heart_icon.png" WidthRequest="40" HeightRequest="40" BackgroundColor="Transparent"/>
+                                <ImageButton Source="comment_icon.png" WidthRequest="40" HeightRequest="40" BackgroundColor="Transparent"/>
+                                <ImageButton Source="circle_ixon.png" WidthRequest="40" HeightRequest="40" BackgroundColor="Transparent"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+    
+</ContentPage>
