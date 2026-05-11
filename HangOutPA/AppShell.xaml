@@ -9,28 +9,17 @@
     Title="HangOutPA">
 
     <TabBar>
-        <ShellContent
-            Title="Feed"
-            Icon="folder_icon.png"
-            ContentTemplate="{DataTemplate views:FeedPage}"
-            Route="FeedPage"
-            Shell.NavBarIsVisible="True"
-            />
-        <ShellContent
-    Title="Groups"
-    Icon="group_icon.png"
-    ContentTemplate="{DataTemplate views:GroupsPage}"
-    Route="FeedPage"
-    Shell.NavBarIsVisible="True"
-    />
+        <Tab Title="Feed" Icon="folder_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate views:FeedPage}" />
+        </Tab>
 
-        <ShellContent
-            Title="Profile"
-            Icon="account_icon.png"
-            ContentTemplate="{DataTemplate views:AccountPage}"
-            Shell.NavBarIsVisible="False"
-            Route="AccountPage"
-            />
+        <Tab Title="Groups" Icon="group_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate views:GroupsPage}" />
+        </Tab>
+
+        <Tab Title="Profile" Icon="account_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate views:AccountPage}" />
+        </Tab>
     </TabBar>
 
 </Shell>

@@ -92,10 +92,13 @@
                             </Border>
 
                             <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
-                                <ImageButton Source="heart_icon.png" WidthRequest="40" HeightRequest="40" BackgroundColor="Transparent"/>
-                                <ImageButton Source="comment_icon.png" WidthRequest="40" HeightRequest="40" BackgroundColor="Transparent" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:FeedViewModel}}, Path=OpenCommentsCommand}"
-                                    CommandParameter="{Binding .}" />
-                                <ImageButton Source="circle_ixon.png" WidthRequest="40" HeightRequest="40" BackgroundColor="Transparent"/>
+                                <ImageButton Source="heart_icon.png" WidthRequest="40" HeightRequest="40" BackgroundColor="Transparent" 
+                                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:FeedViewModel}}, Path=GoToDetailsCommand}"
+                                             CommandParameter="{Binding .}"/>
+                                <ImageButton Source="comment_icon.png" WidthRequest="40" HeightRequest="40" BackgroundColor="Transparent" 
+                                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:FeedViewModel}}, Path=OpenCommentsCommand}"
+                                             CommandParameter="{Binding .}" />
+                                <ImageButton Source="forward_icon.png" WidthRequest="40" HeightRequest="40" BackgroundColor="Transparent"/>
                             </VerticalStackLayout>
                         </Grid>
                     </Border>

@@ -17,12 +17,14 @@ public class FeedViewModel : BindableObject // Базовый класс для 
     // Команда для фильтрации
     public ICommand FilterCommand { get; }
     public ICommand OpenCommentsCommand { get; }
+    public ICommand GoToDetailsCommand { get; }
 
     public FeedViewModel()
     {
         _eventService = new MockEventService();
         FilterCommand = new Command<string>(ExecuteFilterCommand);
         OpenCommentsCommand = new Command<Event>(OnOpenComments);
+        GoToDetailsCommand = new Command<Event>(OnGoToDetails);
         // Загружаем данные при создании
         LoadDataAsync();
     }
@@ -54,4 +56,18 @@ public class FeedViewModel : BindableObject // Базовый класс для 
         var popup = new CommentsPopup(selectedEvent.Comments);
         await Application.Current.MainPage.ShowPopupAsync(popup);
     }
+
+    private async void OnGoToDetails(Event selectedEvent)
+    {
+        if (selectedEvent == null) return;
+
+        // Создаем параметры для передачи объекта
+        var navigationParameter = new Dictionary<string, object>
+        {
+            { "SelectedEvent", selectedEvent }
+        };
+
+        await Shell.Current.GoToAsync(nameof(EventDetailsPage), navigationParameter);
+    }
+
 }

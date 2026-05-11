@@ -10,7 +10,7 @@ namespace HangOutPA
         }
         private void RegisterRoutingPages()
         {
-            //Routing.RegisterRoute("CalculatorPage", typeof(CalculatorPage));
+            Routing.RegisterRoute(nameof(EventDetailsPage), typeof(EventDetailsPage));
         }
     }
 }

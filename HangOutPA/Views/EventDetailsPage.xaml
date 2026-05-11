@@ -1,0 +1,97 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:HangOutPA.ViewModels"
+             x:Class="HangOutPA.Views.EventDetailsPage"
+             BackgroundColor="#F3F4F6"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.BindingContext>
+        <vm:EventDetailsViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto, Auto, *, Auto" Padding="0">
+
+        <HorizontalStackLayout Grid.Row="0" 
+                           Margin="20,40,20,10" 
+                           Spacing="10" 
+                           VerticalOptions="Start">
+            <ImageButton Source="back_icon.png" 
+                     WidthRequest="25" 
+                     HeightRequest="25"
+                     Clicked="OnBackClicked" 
+                     BackgroundColor="LightGrey"/>
+            <Label Text="{Binding SelectedEvent.Title, StringFormat='Inner network : {0}'}" 
+               FontSize="22" 
+               FontAttributes="Bold" 
+               VerticalOptions="Center"/>
+        </HorizontalStackLayout>
+
+        <Border Grid.Row="1" 
+            Margin="20,10" 
+            BackgroundColor="#DCFD8B" 
+            StrokeThickness="2" 
+            Stroke="#1E293B"
+            VerticalOptions="Start">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20"/>
+            </Border.StrokeShape>
+            <Grid ColumnDefinitions="*, Auto" Padding="20">
+                <VerticalStackLayout Grid.Column="0" Spacing="5">
+                    <Label Text="CROWDFUND POT" FontAttributes="Bold" FontSize="18"/>
+                    <Label Text="{Binding SelectedEvent.GoalAmount, StringFormat='GOAL: ${0}'}" FontSize="12"/>
+                    <Label Text="{Binding SelectedEvent.CurrentFunded, StringFormat='FUNDED: ${0}'}" FontAttributes="Bold" TextColor="#FF823A"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" Spacing="10">
+                    <Button Text="CHIP IN!" BackgroundColor="#1E293B" TextColor="White" CornerRadius="15"/>
+                    <HorizontalStackLayout Spacing="5">
+                        <Button Text="$2" Style="{StaticResource SmallChipStyle}" Command="{Binding ChipInCommand}" CommandParameter="2"/>
+                        <Button Text="$5" Style="{StaticResource SmallChipStyle}" Command="{Binding ChipInCommand}" CommandParameter="5"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Grid>
+        </Border>
+
+        <CollectionView Grid.Row="2" 
+                    ItemsSource="{Binding SelectedEvent.Participants}" 
+                    Margin="20,10"
+                    VerticalOptions="FillAndExpand">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="50, *" Margin="0,0,0,15">
+                        <Border Grid.Column="0" WidthRequest="45" HeightRequest="45">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="22"/>
+                            </Border.StrokeShape>
+                            <Image Source="{Binding Avatar}" Aspect="AspectFill"/>
+                        </Border>
+                        <Label Grid.Column="1" VerticalOptions="Center" Margin="15,0">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Name}" FontAttributes="Bold" FontSize="16"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding Action}" TextColor="#64748B"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Border Grid.Row="3" 
+            BackgroundColor="White" 
+            Padding="20,30,20,40" 
+            VerticalOptions="End">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="30,30,0,0"/>
+            </Border.StrokeShape>
+            <VerticalStackLayout Spacing="15">
+                <Label Text="POST-EVENT CHECK-IN" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#64748B"/>
+                <Button Text="CHECK-IN COMPLETE" BackgroundColor="#00A86B" HeightRequest="60" CornerRadius="30"/>
+            </VerticalStackLayout>
+        </Border>
+
+    </Grid>
+
+</ContentPage>
