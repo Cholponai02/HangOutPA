@@ -1,0 +1,52 @@
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="HangOutPA.Views.CommentsPopup"
+               >
+
+    <Border BackgroundColor="White" 
+            HeightRequest="500" 
+            WidthRequest="400"
+            VerticalOptions="End"
+            StrokeThickness="0">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="30,30,0,0"/>
+        </Border.StrokeShape>
+
+        <Grid RowDefinitions="Auto, *, Auto" Padding="20">
+
+            <BoxView Grid.Row="0" WidthRequest="40" HeightRequest="4" 
+                     Color="#E2E8F0" CornerRadius="2" 
+                     HorizontalOptions="Center" Margin="0,0,0,20"/>
+
+            <CollectionView Grid.Row="1" ItemsSource="{Binding EventComments}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="40, *" Margin="0,0,0,15">
+                            <Border Grid.Column="0" WidthRequest="35" HeightRequest="35" VerticalOptions="Start">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="17"/>
+                                </Border.StrokeShape>
+                                <Image Source="user_avatar.png" Aspect="AspectFill"/>
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" Margin="10,0,0,0">
+                                <Label Text="Username" FontSize="12" FontAttributes="Bold" TextColor="#64748B"/>
+                                <Label Text="{Binding Text}" FontSize="14" TextColor="#1E293B"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Grid Grid.Row="2" ColumnDefinitions="*, Auto" Padding="0,10,0,0">
+                <Border Grid.Column="0" StrokeThickness="1" Stroke="#E2E8F0" HeightRequest="45">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="22"/>
+                    </Border.StrokeShape>
+                    <Entry Placeholder="Add comment..." Margin="15,0" VerticalOptions="Center"/>
+                </Border>
+                <ImageButton Grid.Column="1" Source="send_icon.png" WidthRequest="30" Margin="10,0,0,0"/>
+            </Grid>
+        </Grid>
+    </Border>
+</toolkit:Popup>

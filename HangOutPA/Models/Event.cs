@@ -7,5 +7,7 @@
         public string ImageSource { get; set; }
         public string Description { get; set; }
         public string TimeLocation { get; set; }
+
+        public List<Comment> Comments { get; set; } = new();
     }
 }
