@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using HangOutPA.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace HangOutPA
 {
@@ -14,9 +15,10 @@ namespace HangOutPA
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            builder.Services.AddTransient<FeedViewModel>();
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
