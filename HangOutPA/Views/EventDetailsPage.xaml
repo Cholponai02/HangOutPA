@@ -43,10 +43,23 @@
                 </VerticalStackLayout>
 
                 <VerticalStackLayout Grid.Column="1" Spacing="10">
-                    <Button Text="CHIP IN!" BackgroundColor="#1E293B" TextColor="White" CornerRadius="15"/>
+                    <Button Text="CHIP IN!" 
+            BackgroundColor="#1E293B" 
+            TextColor="White" 
+            CornerRadius="15"
+            Command="{Binding ConfirmChipInCommand}"
+            IsEnabled="{Binding IsNotChippedIn}"/>
+
                     <HorizontalStackLayout Spacing="5">
-                        <Button Text="$2" Style="{StaticResource SmallChipStyle}" Command="{Binding ChipInCommand}" CommandParameter="2"/>
-                        <Button Text="$5" Style="{StaticResource SmallChipStyle}" Command="{Binding ChipInCommand}" CommandParameter="5"/>
+                        <Button Text="$0" Style="{StaticResource SmallChipStyle}" 
+                Command="{Binding ChipInCommand}" CommandParameter="0"
+                IsEnabled="{Binding IsNotChippedIn}"/>
+                        <Button Text="$2" Style="{StaticResource SmallChipStyle}" 
+                Command="{Binding ChipInCommand}" CommandParameter="2"
+                IsEnabled="{Binding IsNotChippedIn}"/>
+                        <Button Text="$5" Style="{StaticResource SmallChipStyle}" 
+                Command="{Binding ChipInCommand}" CommandParameter="5"
+                IsEnabled="{Binding IsNotChippedIn}"/>
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
             </Grid>
@@ -88,7 +101,10 @@
             </Border.StrokeShape>
             <VerticalStackLayout Spacing="15">
                 <Label Text="POST-EVENT CHECK-IN" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#64748B"/>
-                <Button Text="CHECK-IN COMPLETE" BackgroundColor="#00A86B" HeightRequest="60" CornerRadius="30"/>
+                <Button Text="CHECK-IN COMPLETE" HeightRequest="60" CornerRadius="30"
+                        BackgroundColor="#00A86B"  
+        IsEnabled="{Binding CanCheckIn}"
+        Command="{Binding CheckInCommand}"/>
             </VerticalStackLayout>
         </Border>
 

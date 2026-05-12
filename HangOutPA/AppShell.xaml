@@ -13,7 +13,7 @@
             <ShellContent ContentTemplate="{DataTemplate views:FeedPage}" />
         </Tab>
 
-        <Tab Title="Groups" Icon="group_icon.png">
+        <Tab Title="Groups" Icon="group_icon.png" Route="GroupsPage">
             <ShellContent ContentTemplate="{DataTemplate views:GroupsPage}" />
         </Tab>
 

@@ -49,7 +49,7 @@ public class MockEventService : IEventService
                 GoalDescription = "Print materials",
                 Participants = new List<Participant> {
                     new Participant { Name = "Prof. Rossi", Avatar = "user4.png", Action = "joined" },
-                    new Participant { Name = "Luca", Avatar = "user5.png", Action = "funded $2" }
+                    new Participant { Name = "Luca", Avatar = "user2.png", Action = "funded $2" }
                 },
                 Comments = new List<Comment>
                 {
@@ -68,7 +68,7 @@ public class MockEventService : IEventService
                 CurrentFunded = 0,
                 GoalDescription = "Free event",
                 Participants = new List<Participant> {
-                    new Participant { Name = "Elena", Avatar = "user6.png", Action = "joined" }
+                    new Participant { Name = "Elena", Avatar = "user3.png", Action = "joined" }
                 },
                 Comments = new List<Comment>
                 {
