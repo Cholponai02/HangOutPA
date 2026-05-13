@@ -9,29 +9,28 @@
         <vm:EventDetailsViewModel />
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="Auto, Auto, *, Auto" Padding="0">
+    <Grid RowDefinitions="Auto, Auto, Auto, *, Auto" Padding="0">
 
         <HorizontalStackLayout Grid.Row="0" 
-                           Margin="20,40,20,10" 
-                           Spacing="10" 
-                           VerticalOptions="Start">
+                               Margin="20,40,20,10" 
+                               Spacing="10" 
+                               VerticalOptions="Start">
             <ImageButton Source="back_icon.png" 
-                     WidthRequest="25" 
-                     HeightRequest="25"
-                     Clicked="OnBackClicked" 
-                     BackgroundColor="LightGrey"/>
+                         WidthRequest="25" 
+                         HeightRequest="25"
+                         Clicked="OnBackClicked" 
+                         BackgroundColor="Transparent"/>
             <Label Text="{Binding SelectedEvent.Title, StringFormat='Inner network : {0}'}" 
-               FontSize="22" 
-               FontAttributes="Bold" 
-               VerticalOptions="Center"/>
+                   FontSize="22" 
+                   FontAttributes="Bold" 
+                   VerticalOptions="Center"/>
         </HorizontalStackLayout>
 
         <Border Grid.Row="1" 
-            Margin="20,10" 
-            BackgroundColor="#DCFD8B" 
-            StrokeThickness="2" 
-            Stroke="#1E293B"
-            VerticalOptions="Start">
+                Margin="20,10" 
+                BackgroundColor="#DCFD8B" 
+                StrokeThickness="2" 
+                Stroke="#1E293B">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="20"/>
             </Border.StrokeShape>
@@ -44,31 +43,76 @@
 
                 <VerticalStackLayout Grid.Column="1" Spacing="10">
                     <Button Text="CHIP IN!" 
-            BackgroundColor="#1E293B" 
-            TextColor="White" 
-            CornerRadius="15"
-            Command="{Binding ConfirmChipInCommand}"
-            IsEnabled="{Binding IsNotChippedIn}"/>
-
+                            BackgroundColor="#1E293B" 
+                            TextColor="White" 
+                            CornerRadius="15"
+                            Command="{Binding ConfirmChipInCommand}"
+                            IsEnabled="{Binding IsNotChippedIn}"/>
+                    
                     <HorizontalStackLayout Spacing="5">
                         <Button Text="$0" Style="{StaticResource SmallChipStyle}" 
-                Command="{Binding ChipInCommand}" CommandParameter="0"
-                IsEnabled="{Binding IsNotChippedIn}"/>
+                                Command="{Binding ChipInCommand}" CommandParameter="0"
+                                IsEnabled="{Binding IsNotChippedIn}"/>
                         <Button Text="$2" Style="{StaticResource SmallChipStyle}" 
-                Command="{Binding ChipInCommand}" CommandParameter="2"
-                IsEnabled="{Binding IsNotChippedIn}"/>
+                                Command="{Binding ChipInCommand}" CommandParameter="2"
+                                IsEnabled="{Binding IsNotChippedIn}"/>
                         <Button Text="$5" Style="{StaticResource SmallChipStyle}" 
-                Command="{Binding ChipInCommand}" CommandParameter="5"
-                IsEnabled="{Binding IsNotChippedIn}"/>
+                                Command="{Binding ChipInCommand}" CommandParameter="5"
+                                IsEnabled="{Binding IsNotChippedIn}"/>
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
             </Grid>
         </Border>
 
-        <CollectionView Grid.Row="2" 
-                    ItemsSource="{Binding SelectedEvent.Participants}" 
-                    Margin="20,10"
-                    VerticalOptions="FillAndExpand">
+        <VerticalStackLayout Grid.Row="2" Margin="0,10,0,10">
+            <Label Text="OFFLINE MEMORIES" 
+                   FontAttributes="Bold" 
+                   TextColor="#1E293B" 
+                   Margin="20,0,20,5"/>
+            <Border Margin="20,0" 
+                    Padding="15"
+                    BackgroundColor="White" 
+                    StrokeThickness="1" 
+                    Stroke="#CBD5E1">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20"/>
+                </Border.StrokeShape>
+                <Grid ColumnDefinitions="Auto, *">
+                    <Border Grid.Column="0"
+                            WidthRequest="70" 
+                            HeightRequest="70" 
+                            BackgroundColor="#F1F5F9"
+                            Margin="0,0,10,0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="35"/>
+                        </Border.StrokeShape>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding UploadPhotoCommand}"/>
+                        </Border.GestureRecognizers>
+                        <Image Source="camera_icon.png" WidthRequest="30" HeightRequest="30" Opacity="0.6"/>
+                    </Border>
+                    <CollectionView Grid.Column="1" ItemsSource="{Binding UploadedPhotos}" HeightRequest="75">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border WidthRequest="70" HeightRequest="70" StrokeThickness="0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="15"/>
+                                    </Border.StrokeShape>
+                                    <Image Source="{Binding .}" Aspect="AspectFill"/>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </Border>
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="3" 
+                        ItemsSource="{Binding SelectedEvent.Participants}" 
+                        Margin="20,10">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid ColumnDefinitions="50, *" Margin="0,0,0,15">
@@ -92,22 +136,24 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Border Grid.Row="3" 
-            BackgroundColor="White" 
-            Padding="20,30,20,40" 
-            VerticalOptions="End">
+        <Border Grid.Row="4" 
+                BackgroundColor="White" 
+                Padding="20,30,20,40" 
+                VerticalOptions="End">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="30,30,0,0"/>
             </Border.StrokeShape>
             <VerticalStackLayout Spacing="15">
                 <Label Text="POST-EVENT CHECK-IN" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#64748B"/>
-                <Button Text="CHECK-IN COMPLETE" HeightRequest="60" CornerRadius="30"
+                <Button Text="CHECK-IN COMPLETE" 
+                        HeightRequest="60" 
+                        CornerRadius="30"
                         BackgroundColor="#00A86B"  
-        IsEnabled="{Binding CanCheckIn}"
-        Command="{Binding CheckInCommand}"/>
+                        IsEnabled="{Binding CanCheckIn}"
+                        Command="{Binding CheckInCommand}"/>
             </VerticalStackLayout>
         </Border>
 
     </Grid>
-
+    
 </ContentPage>

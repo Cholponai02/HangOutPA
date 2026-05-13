@@ -9,6 +9,24 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="SmallChipStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="TextColor" Value="#1E293B"/>
+                <Setter Property="BorderColor" Value="#1E293B"/>
+                <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="HeightRequest" Value="35"/>
+                <Setter Property="WidthRequest" Value="45"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Style.Triggers>
+                    <Trigger TargetType="Button" Property="IsEnabled" Value="False">
+                        <Setter Property="Opacity" Value="0.5" />
+                        <Setter Property="BackgroundColor" Value="#F1F5F9" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

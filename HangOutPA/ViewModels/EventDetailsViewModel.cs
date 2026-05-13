@@ -1,6 +1,8 @@
 ﻿using System.Windows.Input;
 using HangOutPA.Models;
 using HangOutPA.Services;
+using Microsoft.Maui.Media; // Essential for MediaPicker
+using System.Collections.ObjectModel;
 
 namespace HangOutPA.ViewModels;
 
@@ -19,6 +21,14 @@ public class EventDetailsViewModel : BindableObject
     public bool IsNotChippedIn => !_isChippedIn; // Для блокировки кнопок выбора после нажатия
     public bool CanCheckIn => _isChippedIn; // Только после Chip In можно делать Check-in
 
+    private ObservableCollection<string> _uploadedPhotos;
+    public ObservableCollection<string> UploadedPhotos
+    {
+        get => _uploadedPhotos;
+        set { _uploadedPhotos = value; OnPropertyChanged(); }
+    }
+
+    public ICommand UploadPhotoCommand { get; }
     public ICommand ChipInCommand { get; }
     public ICommand ConfirmChipInCommand { get; }
     public ICommand CheckInCommand { get; }
@@ -38,6 +48,9 @@ public class EventDetailsViewModel : BindableObject
 
         // Команда Check-in
         CheckInCommand = new Command(OnCheckIn, () => CanCheckIn);
+        UploadedPhotos = new ObservableCollection<string>();
+
+        UploadPhotoCommand = new Command(OnUploadPhoto);
     }
 
     private void OnChipIn(string amount)
@@ -108,4 +121,55 @@ public class EventDetailsViewModel : BindableObject
 
         await Application.Current.MainPage.DisplayAlert("Success", "You're in! Now you can check-in after the event.", "OK");
     }
+
+    private async void OnUploadPhoto()
+    {
+        // 1. SECURITY: Don't allow uploads unless they Chipped-in (joined the meeting)
+        if (!CanCheckIn)
+        {
+            await Shell.Current.DisplayAlert("Members Only", "Please Chip-in ($0 is fine) to contribute photos.", "OK");
+            return;
+        }
+
+        try
+        {
+            // 2. Ask user: Camera or Gallery?
+            string action = await Shell.Current.DisplayActionSheet("Submit Offline Photo", "Cancel", null, "Take Photo", "Pick from Gallery");
+
+            FileResult photo = null;
+
+            if (action == "Take Photo")
+            {
+                if (MediaPicker.Default.IsCaptureSupported)
+                {
+                    photo = await MediaPicker.Default.CapturePhotoAsync();
+                }
+            }
+            else if (action == "Pick from Gallery")
+            {
+                photo = await MediaPicker.Default.PickPhotoAsync();
+            }
+
+            // 3. Process the result locally (Simulated "Session" upload)
+            if (photo != null)
+            {
+                // We grab the native path (simulating a success)
+                // In a real app, you upload photo.FullPath to a server.
+                // Here, we just display the local result.
+                string localPath = photo.FullPath;
+
+                // Add to the dynamic collection - UI updates instantly
+                UploadedPhotos.Add(localPath);
+            }
+        }
+        catch (PermissionException)
+        {
+            await Shell.Current.DisplayAlert("Permission Error", "Need permissions to access Camera/Gallery.", "OK");
+        }
+        catch (Exception ex)
+        {
+            // Handle other errors (cancelled by user, etc.)
+        }
+    }
+
 }
