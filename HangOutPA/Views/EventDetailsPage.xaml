@@ -69,7 +69,7 @@
                FontAttributes="Bold" 
                HorizontalOptions="Center" 
                VerticalOptions="End"/>
-
+                            
                             <HorizontalStackLayout Grid.Row="1" 
                                HorizontalOptions="Center" 
                                VerticalOptions="Start" 
@@ -153,7 +153,7 @@
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="22"/>
                             </Border.StrokeShape>
-                            <Image Source="{Binding Avatar}" Aspect="AspectFill"/>
+                            <Image Source="{Binding Avatar}" Aspect="AspectFill" WidthRequest="45" HeightRequest="45"/>
                         </Border>
                         <Label Grid.Column="1" VerticalOptions="Center" Margin="15,0">
                             <Label.FormattedText>
@@ -169,15 +169,84 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Border Grid.Row="4" 
+     <!--   <Border Grid.Row="4" 
+        Margin="20,10" 
+        BackgroundColor="#F8FAFC" 
+        Stroke="#FF8C42" 
+        StrokeThickness="1.5">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="25"/>
+            </Border.StrokeShape>
+
+            <VerticalStackLayout Padding="20" Spacing="12">
+                <HorizontalStackLayout Spacing="8">
+                    <Label Text="💸" FontSize="20"/>
+                    <Label Text="SPLIT THE BILL" FontAttributes="Bold" FontSize="18" TextColor="#1E293B" VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Enter total receipt amount:" FontSize="12" TextColor="#64748B" Margin="5,0"/>
+                    <Border Stroke="#E2E8F0" StrokeThickness="1" BackgroundColor="White" Padding="15,5">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="15"/>
+                        </Border.StrokeShape>
+                        <Grid ColumnDefinitions="Auto, *">
+                            <Label Grid.Column="0" Text="€" FontSize="20" FontAttributes="Bold" TextColor="#FF8C42" VerticalOptions="Center" Margin="0,0,10,0"/>
+                            <Entry Grid.Column="1" 
+                           x:Name="TotalBillEntry" 
+                           Placeholder="0.00" 
+                           Keyboard="Numeric" 
+                           FontSize="20" 
+                           FontAttributes="Bold" 
+                           TextColor="#1E293B"
+                           TextChanged="OnTotalBillChanged"/>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+                <Border BackgroundColor="#FFF4E6" Padding="12" StrokeThickness="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                        <Label Text="Splitting between" TextColor="#64748B" FontSize="13"/>
+                        <Label Text="{Binding SelectedEvent.Participants.Count}" 
+                       TextColor="#FF8C42" 
+                       FontAttributes="Bold" 
+                       FontSize="14"/>
+                        <Label Text="members" TextColor="#64748B" FontSize="13"/>
+                    </HorizontalStackLayout>
+                </Border>
+
+                <VerticalStackLayout x:Name="ResultContainer" IsVisible="False" Spacing="5" Margin="0,10,0,0">
+                    <Label Text="EACH PERSON PAYS:" HorizontalOptions="Center" FontSize="10" CharacterSpacing="1" TextColor="#64748B"/>
+                    <Label x:Name="SplitResultLabel" 
+                   Text="€0.00" 
+                   HorizontalOptions="Center" 
+                   FontSize="28" 
+                   FontAttributes="Bold" 
+                   TextColor="#00A86B"/>
+
+                    <Button Text="SEND PAYMENT REQUESTS" 
+                    BackgroundColor="#FF8C42" 
+                    TextColor="White" 
+                    CornerRadius="15" 
+                    HeightRequest="50"
+                    Margin="0,10,0,0"
+                    Clicked="OnSendRequestsClicked"/>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Border>-->
+
+        <Border Grid.Row="5" 
                 BackgroundColor="White" 
-                Padding="20,30,20,40" 
+                Padding="20,15,20,20" 
                 VerticalOptions="End">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="30,30,0,0"/>
             </Border.StrokeShape>
             <VerticalStackLayout Spacing="15">
-                <Label Text="POST-EVENT CHECK-IN" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#64748B"/>
+                <Button Text="SPLIT THE BILL" BackgroundColor="#FF8C42" CornerRadius="30" TextColor="White" FontAttributes="Bold" Clicked="OnOpenSplitPopupClicked"/>
                 <Button Text="CHECK-IN COMPLETE" 
                         HeightRequest="60" 
                         CornerRadius="30"

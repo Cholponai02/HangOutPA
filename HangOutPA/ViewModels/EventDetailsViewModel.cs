@@ -103,6 +103,7 @@ public class EventDetailsViewModel : BindableObject
 
     private async void OnConfirmChipIn()
     {
+        _selectedAmount = "0";
         if (string.IsNullOrEmpty(_selectedAmount))
         {
             await Application.Current.MainPage.DisplayAlert("Payment", "Please select $0, $2 or $5", "OK");

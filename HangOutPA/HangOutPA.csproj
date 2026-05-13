@@ -79,6 +79,9 @@
 	  <MauiXaml Update="Views\MainNavigation\FeedPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Popups\SplitPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Popups\WalletPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -17,7 +17,7 @@ public class GroupsViewModel : BindableObject
         {
             Services.DataService.PastGroups.Add(new GroupModel
             {
-                Name = "Coffee at Sapienza",
+                Name = "Cooking classes",
                 ImageUrl = "coffee.png",
                 LastMessage = "It was fun!",
                 LastMessageTime = "Yesterday"
@@ -77,7 +77,7 @@ public class GroupsViewModel : BindableObject
             var navParam = new Dictionary<string, object> { { "SelectedEvent", eventDetails } };
             await Shell.Current.GoToAsync(nameof(EventDetailsPage), navParam);
         }
-        if (selectedGroup.Name == "Coffee at Sapienza")
+        if (selectedGroup.Name == "Cooking classes")
         {
             await Application.Current.MainPage.DisplayAlert("Warning", "This page is under construction.", "OK");
         }

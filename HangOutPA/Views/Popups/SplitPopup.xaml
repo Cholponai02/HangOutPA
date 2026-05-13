@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+           x:Class="HangOutPA.Views.Popups.SplitPopup"
+           Color="Transparent">
+
+    <Border BackgroundColor="White" 
+            WidthRequest="350" 
+            HeightRequest="480" 
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            StrokeThickness="0">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="40"/>
+        </Border.StrokeShape>
+
+        <VerticalStackLayout Padding="30" Spacing="20">
+            <Label Text="💸 Split the Bill" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#1E293B"/>
+
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Total amount on the receipt:" FontSize="12" TextColor="#64748B" HorizontalOptions="Center"/>
+                <Border Stroke="#FF8C42" StrokeThickness="2" Padding="15,5">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Grid ColumnDefinitions="Auto, *">
+                        <Label Text="€" FontSize="24" FontAttributes="Bold" TextColor="#FF8C42" VerticalOptions="Center" Margin="0,0,10,0"/>
+                        <Entry x:Name="TotalBillEntry" 
+                               Placeholder="0.00" 
+                               Keyboard="Numeric" 
+                               FontSize="24" 
+                               FontAttributes="Bold" 
+                               HorizontalOptions="Fill"
+                               TextChanged="OnAmountChanged"/>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+
+            <Border BackgroundColor="#FFF4E6" Padding="20" StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="25"/>
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                    <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+                        <Label Text="Members in Squad:" FontSize="14" TextColor="#64748B"/>
+                        <Label x:Name="MemberCountLabel" Text="3" FontAttributes="Bold" FontSize="14" TextColor="#1E293B"/>
+                    </HorizontalStackLayout>
+
+                    <BoxView HeightRequest="1" Color="#FF8C42" Opacity="0.2"/>
+
+                    <Label Text="EACH PAYS:" FontSize="10" CharacterSpacing="1" HorizontalOptions="Center" TextColor="#64748B"/>
+                    <Label x:Name="ResultLabel" Text="€0.00" FontSize="36" FontAttributes="Bold" TextColor="#FF6B2C" HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="SEND REQUESTS 🚀" 
+                    BackgroundColor="#FF8C42" 
+                    TextColor="White" 
+                    HeightRequest="60" 
+                    CornerRadius="20" 
+                    FontAttributes="Bold"
+                    Clicked="OnSendClicked"/>
+
+            <Button Text="Cancel" BackgroundColor="Transparent" TextColor="#94A3B8" Clicked="OnCancelClicked"/>
+        </VerticalStackLayout>
+    </Border>
+</mct:Popup>

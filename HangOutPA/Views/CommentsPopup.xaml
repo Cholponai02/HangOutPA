@@ -27,10 +27,10 @@
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="17"/>
                                 </Border.StrokeShape>
-                                <Image Source="face1.png" Aspect="AspectFill"/>
+                                <Image Source="{Binding UserAvatar}" Aspect="AspectFill"/>
                             </Border>
                             <VerticalStackLayout Grid.Column="1" Margin="10,0,0,0">
-                                <Label Text="Username" FontSize="12" FontAttributes="Bold" TextColor="#64748B"/>
+                                <Label Text="{Binding UserName}" FontSize="12" FontAttributes="Bold" TextColor="#64748B"/>
                                 <Label Text="{Binding Text}" FontSize="14" TextColor="#1E293B"/>
                             </VerticalStackLayout>
                         </Grid>

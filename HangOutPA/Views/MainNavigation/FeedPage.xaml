@@ -61,7 +61,9 @@
                 <Button Text="All" Style="{StaticResource CategoryBtnStyle}" BackgroundColor="#FF823A" TextColor="White" CommandParameter="All" Command="{Binding FilterCommand}"/>
                 <Button Text="⚽ Sport" Style="{StaticResource CategoryBtnStyle}" CommandParameter="Sport" Command="{Binding FilterCommand}"/>
                 <Button Text="📚 Study" Style="{StaticResource CategoryBtnStyle}" CommandParameter="Study" Command="{Binding FilterCommand}"/>
+                <Button Text="🎤 Entertainment" Style="{StaticResource CategoryBtnStyle}" CommandParameter="Entertainment" Command="{Binding FilterCommand}"/>
                 <Button Text="🍕 Food" Style="{StaticResource CategoryBtnStyle}" CommandParameter="Food" Command="{Binding FilterCommand}"/>
+
             </HorizontalStackLayout>
         </ScrollView>
         <CollectionView Grid.Row="2" ItemsSource="{Binding FilteredEvents}" SelectionMode="None" >
