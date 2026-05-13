@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+           x:Class="HangOutPA.Views.Popups.WalletPopup"
+           Color="Transparent">
+
+    <Border BackgroundColor="White" 
+            WidthRequest="350" 
+            HeightRequest="550" 
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            StrokeThickness="0">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="40"/>
+        </Border.StrokeShape>
+
+        <VerticalStackLayout Padding="25" Spacing="20">
+            <Label Text="Top Up Balance" 
+                   FontSize="22" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   TextColor="#1E293B"/>
+
+            <Border HeightRequest="170" StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="25"/>
+                </Border.StrokeShape>
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#FF8C42" Offset="0"/>
+                        <GradientStop Color="#FF6B2C" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid Padding="20">
+                    <Label Text="DEBIT CARD" TextColor="White" FontSize="12" FontAttributes="Bold" VerticalOptions="Start"/>
+                    <Label Text="**** **** **** 4452" TextColor="White" FontSize="18" VerticalOptions="Center" HorizontalOptions="Center" CharacterSpacing="2"/>
+                    <HorizontalStackLayout VerticalOptions="End" HorizontalOptions="End" Spacing="10">
+                        <Label Text="VALID THRU: 08/28" TextColor="White" FontSize="10" VerticalOptions="Center"/>
+                        <Image Source="visa_logo.png" WidthRequest="40"/>
+                    </HorizontalStackLayout>
+                </Grid>
+            </Border>
+
+            <VerticalStackLayout Spacing="12">
+                <Border Stroke="#F1F5F9" BackgroundColor="#F8FAFC" StrokeThickness="1" Padding="15,5">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Entry x:Name="CardEntry" Placeholder="Card Number" Keyboard="Numeric" MaxLength="16" PlaceholderColor="#94A3B8"/>
+                </Border>
+
+                <Grid ColumnDefinitions="*, *">
+                    <Border Grid.Column="0" Stroke="#F1F5F9" BackgroundColor="#F8FAFC" StrokeThickness="1" Padding="15,5" Margin="0,0,5,0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="15"/>
+                        </Border.StrokeShape>
+                        <Entry x:Name="ExpiryEntry" Placeholder="MM/YY" Keyboard="Numeric" MaxLength="5"/>
+                    </Border>
+                    <Border Grid.Column="1" Stroke="#F1F5F9" BackgroundColor="#F8FAFC" StrokeThickness="1" Padding="15,5" Margin="5,0,0,0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="15"/>
+                        </Border.StrokeShape>
+                        <Entry x:Name="CvvEntry" Placeholder="CVV" Keyboard="Numeric" IsPassword="True" MaxLength="3"/>
+                    </Border>
+                </Grid>
+
+                <Border Stroke="#FF8C42" StrokeThickness="1.5" Padding="10,5">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
+                    <Entry x:Name="AmountEntry" Placeholder="Amount to Add (€)" Keyboard="Numeric" TextColor="#FF8C42" FontAttributes="Bold"/>
+                </Border>
+            </VerticalStackLayout>
+
+            <Button Text="ADD FUNDS" 
+                    BackgroundColor="#FF8C42" 
+                    TextColor="White" 
+                    HeightRequest="60" 
+                    CornerRadius="20" 
+                    FontAttributes="Bold"
+                    Clicked="OnAddFundsClicked">
+                <Button.Shadow>
+                    <Shadow Brush="#FF8C42" Offset="0,5" Radius="10" Opacity="0.3"/>
+                </Button.Shadow>
+            </Button>
+        </VerticalStackLayout>
+    </Border>
+</mct:Popup>
